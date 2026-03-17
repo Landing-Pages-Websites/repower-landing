@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Oswald, Source_Sans_3 } from "next/font/google";
+import { Barlow_Condensed, Source_Sans_3 } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const oswald = Oswald({
+const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["400", "500", "600", "700"]
+  weight: ["400", "500", "600", "700", "800"]
 });
 
 const sourceSans = Source_Sans_3({
@@ -15,8 +15,17 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "repower Montana - Solar + Battery Solutions",
-  description: "Solar panels, battery backup, and energy resilience for Montana homes and businesses. Schedule your free consultation today.",
+  title: "Solar + Battery for Your Home | repower Montana",
+  description: "Power your Montana home with solar energy and battery backup. Schedule your free consultation with repower today. 30% federal tax credit available.",
+  openGraph: {
+    title: "Solar + Battery for Your Home | repower Montana",
+    description: "Power your Montana home with solar energy and battery backup. Schedule your free consultation today.",
+    images: ["/trust-badges.png"],
+  },
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${oswald.variable} ${sourceSans.variable}`}>
+    <html lang="en" className={`${barlowCondensed.variable} ${sourceSans.variable}`}>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -33,10 +42,10 @@ export default function RootLayout({
           }}
         />
         <script src="https://cdn.gomega.ai/scripts/optimizer.min.js" async />
-        <Script src="https://572388.tctm.co/t.js" strategy="afterInteractive" />
       </head>
       <body className={`${sourceSans.className} antialiased`}>
         {children}
+        <Script src="https://572388.tctm.co/t.js" strategy="afterInteractive" />
       </body>
     </html>
   );
