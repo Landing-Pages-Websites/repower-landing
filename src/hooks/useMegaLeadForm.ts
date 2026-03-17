@@ -4,7 +4,7 @@ import { useEffect, useCallback, useRef } from "react";
 
 const CONFIG = {
   CUSTOMER_ID: "f62ec917-da4b-47fc-971a-626016771421",
-  SITE_ID: "SITE_ID_PLACEHOLDER",
+  SITE_ID: "7dbda2a3-f2b6-4043-9001-115caf74b9bd",
   SOURCE_PROVIDER: "repower-landing-solar-battery",
   ENDPOINT: "https://analytics.gomega.ai/submission/submit",
 };

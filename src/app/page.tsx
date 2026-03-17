@@ -63,7 +63,7 @@ function DualCTA({ primary, href = "#hero-form" }: { primary: string; href?: str
 }
 
 export default function LandingPage() {
-  useTracking({ siteKey: "sk_placeholder" });
+  useTracking({ siteKey: "sk_mmv1597s_i3ve8nl7cv" });
   const { submit: submitLead } = useMegaLeadForm();
 
   const [formData, setFormData] = useState({
