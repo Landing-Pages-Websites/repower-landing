@@ -110,7 +110,7 @@ export default function LandingPage() {
       {/* Header */}
       <header className="fixed top-0 w-full z-50 bg-light-bg/95 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="font-display text-2xl font-bold text-primary lowercase tracking-tight">repower</div>
+          <img src="/repower-logo.png" alt="repower" className="h-8 w-auto" />
           <a href="#hero-form" className="bg-primary text-white px-6 py-2.5 rounded-none font-bold uppercase tracking-wider text-sm hover:bg-primary/90 transition-all">
             Get Started
           </a>
