@@ -96,7 +96,7 @@ export default function LandingPage() {
             <option value="over-400">Over $400</option>
           </select>
           <button type="submit" disabled={isSubmitting} className="w-full bg-primary text-white font-bold py-4 rounded-lg text-lg uppercase tracking-wider hover:bg-primary/90 transition-all disabled:opacity-50">
-            {isSubmitting ? "Booking..." : "Schedule My Free Consultation"}
+            {isSubmitting ? "Submitting..." : "Schedule Consultation"}
           </button>
         </>
       )}
