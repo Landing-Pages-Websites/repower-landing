@@ -35,14 +35,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${barlowCondensed.variable} ${sourceSans.variable}`}>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.MEGA_TAG_CONFIG={siteKey:"sk_placeholder"};window.API_ENDPOINT="https://optimizer.gomega.ai";window.TRACKING_API_ENDPOINT="https://events-api.gomega.ai";`,
-          }}
-        />
-        <script src="https://cdn.gomega.ai/scripts/optimizer.min.js" async />
-      </head>
       <body className={`${sourceSans.className} antialiased`}>
         {children}
         <Script src="https://572388.tctm.co/t.js" strategy="afterInteractive" />

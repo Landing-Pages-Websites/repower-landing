@@ -223,11 +223,12 @@ export default function LandingPage() {
       </section>
 
       {/* ═══ Trust Badges ═══ */}
-      <section id="trust" className="py-6 bg-white border-y border-gray-200">
-        <div className="max-w-4xl mx-auto px-4 flex justify-center">
+      <section id="trust" className="py-8 bg-white border-y border-gray-200">
+        <div className="max-w-4xl mx-auto px-4 flex flex-col items-center gap-4">
           <Reveal>
             <img src="/trust-badges.png" alt="Avoid Power Outages | Montana Based Business | Save on Energy Costs" className="h-16 md:h-20 w-auto opacity-80" />
           </Reveal>
+          <DualCTA primary="Book My Free Assessment" href="#hero" />
         </div>
       </section>
 
@@ -356,7 +357,7 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 gap-8">
             <Reveal>
               <div className="relative rounded-2xl overflow-hidden group h-full">
-                <img src="/cta-1.png" alt="repower solar installation" className="w-full h-80 object-cover object-top" />
+                <img src="/cta-5.png" alt="repower solar installation" className="w-full h-80 object-cover object-center" />
                 <div className="bg-light-bg p-8 border border-gray-200 rounded-b-2xl">
                   <h3 className="font-display text-2xl font-bold text-primary uppercase mb-4">Solar Panels</h3>
                   <ul className="space-y-3 text-text-muted">
