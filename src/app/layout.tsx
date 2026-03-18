@@ -36,12 +36,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${barlowCondensed.variable} ${sourceSans.variable}`}>
       <head>
+        <meta name="mega-site-id" content="7dbda2a3-f2b6-4043-9001-115caf74b9bd" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.MEGA_TAG_CONFIG={siteKey:"sk_mmv1597s_i3ve8nl7cv"};`,
+            __html: `window.MEGA_TAG_CONFIG={siteKey:"sk_mmv1597s_i3ve8nl7cv",siteId:"7dbda2a3-f2b6-4043-9001-115caf74b9bd"};window.API_ENDPOINT="https://optimizer.gomega.ai";window.TRACKING_API_ENDPOINT="https://events-api.gomega.ai";`,
           }}
         />
-        <script id="optimizer-script" src="https://cdn.gomega.ai/scripts/optimizer.min.js" async />
+        <script
+          id="optimizer-script"
+          src="https://cdn.gomega.ai/scripts/optimizer.min.js"
+          data-site-id="7dbda2a3-f2b6-4043-9001-115caf74b9bd"
+          async
+        />
       </head>
       <body className={`${sourceSans.className} antialiased`}>
         {children}
