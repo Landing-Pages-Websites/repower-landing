@@ -16,11 +16,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
   background-color: #f5f0eb;
   color: #1a1a1a;
+  overflow-x: hidden;
 }
 
 .font-display {

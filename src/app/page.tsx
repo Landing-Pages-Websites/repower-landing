@@ -67,15 +67,20 @@ export default function LandingPage() {
   const { submit: submitLead } = useMegaLeadForm();
 
   const [formData, setFormData] = useState({
-    firstName: "", lastName: "", email: "", phone: "", budget: ""
+    firstName: "", lastName: "", email: "", phone: "", budget: "", service: ""
   });
   const [submitted, setSubmitted] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [phoneError, setPhoneError] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setShowFloating(window.scrollY > 800);
+    const handleScroll = () => {
+      setShowFloating(window.scrollY > 800);
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -94,6 +99,7 @@ export default function LandingPage() {
         email: formData.email,
         phone: formData.phone,
         budget: formData.budget,
+        service: formData.service,
       });
       setSubmitted(true);
     } catch {
@@ -134,6 +140,19 @@ export default function LandingPage() {
           {phoneError && <p className="text-red-400 text-xs mb-2">{phoneError}</p>}
           {!phoneError && <div className="mb-3" />}
 
+          <select
+            name="service"
+            required
+            className="w-full border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors mb-3 appearance-none"
+            value={formData.service}
+            onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+          >
+            <option value="" disabled className="text-gray-800">What are you interested in?</option>
+            <option value="solar" className="text-gray-800">Solar Panels</option>
+            <option value="battery" className="text-gray-800">Battery Backup</option>
+            <option value="solar_battery" className="text-gray-800">Solar + Battery</option>
+          </select>
+
           <div className="mb-4">
             <p className="text-white text-sm font-medium mb-2">Solar + battery systems typically start around $15,000 (before 30% tax credit). Is this within your budget?</p>
             <div className="flex gap-3">
@@ -163,6 +182,9 @@ export default function LandingPage() {
   return (
     <>
       <QueryParamPersistence />
+
+      {/* Scroll progress bar */}
+      <div className="fixed top-0 left-0 z-[100] h-1 bg-accent transition-none" style={{ width: `${scrollProgress}%` }} />
 
       {/* ═══ Header ═══ */}
       <header className="fixed top-0 w-full z-50 bg-light-bg/95 backdrop-blur-md border-b border-gray-200">
@@ -228,12 +250,12 @@ export default function LandingPage() {
           <Reveal>
             <img src="/trust-badges.png" alt="Avoid Power Outages | Montana Based Business | Save on Energy Costs" className="h-16 md:h-20 w-auto opacity-80" />
           </Reveal>
-          <DualCTA primary="Book My Free Assessment" href="#hero" />
+          <DualCTA primary="Book My Free Assessment" href="#hero-form" />
         </div>
       </section>
 
       {/* ═══ Stats ═══ */}
-      <section id="stats" className="py-20 bg-white">
+      <section id="stats" className="py-20 bg-light-bg">
         <div className="max-w-7xl mx-auto px-4">
           <Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
