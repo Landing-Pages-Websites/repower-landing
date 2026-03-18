@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #1a1a1a;
-  --color-accent: #c79a4a;
-  --color-warm: #c79a4a;
+  --color-primary: #0a0a0a;
+  --color-accent: #AE8950;
+  --color-warm: #AE8950;
   --color-dark: #0a0a0a;
   --color-dark-card: #141414;
   --color-dark-border: #262626;
   --color-light-bg: #f5f0eb;
   --color-light-card: #ffffff;
-  --color-text-dark: #1a1a1a;
+  --color-text-dark: #0a0a0a;
   --color-text-muted: #6b7280;
-  --color-cta: #c79a4a;
+  --color-cta: #AE8950;
 }
 
 html {
@@ -21,7 +21,7 @@ html {
 
 body {
   background-color: #f5f0eb;
-  color: #1a1a1a;
+  color: #0a0a0a;
   overflow-x: hidden;
 }
 
