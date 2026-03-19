@@ -51,7 +51,7 @@ function isValidPhone(value: string): boolean {
 /* ── CTA blocks ── */
 function DualCTA({ primary, href = "#hero-form" }: { primary: string; href?: string }) {
   return (
-    <div className="mt-10 flex flex-col items-center gap-3">
+    <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
       <a href={href} className="bg-primary text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-primary/90 transition-all">
         {primary}
       </a>
@@ -355,7 +355,7 @@ export default function LandingPage() {
             ))}
           </div>
 
-          <div className="mt-12 flex flex-col items-center gap-3">
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <a href="#contact" className="bg-accent text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-accent/90 transition-all rounded-lg">
               Start My Solar Journey
             </a>
