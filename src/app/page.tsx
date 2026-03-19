@@ -67,7 +67,7 @@ export default function LandingPage() {
   const { submit: submitLead } = useMegaLeadForm();
 
   const [formData, setFormData] = useState({
-    firstName: "", lastName: "", email: "", phone: "", budget: "", service: ""
+    lastName: "", email: "", phone: "", address: "", electricBill: "", creditScore: ""
   });
   const [submitted, setSubmitted] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
@@ -94,12 +94,12 @@ export default function LandingPage() {
     setPhoneError("");
     try {
       await submitLead({
-        firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
         phone: formData.phone,
-        budget: formData.budget,
-        service: formData.service,
+        address: formData.address,
+        electricBill: formData.electricBill,
+        creditScore: formData.creditScore,
       });
       setSubmitted(true);
     } catch {
@@ -122,14 +122,9 @@ export default function LandingPage() {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-3 mb-3">
-            <input type="text" name="firstName" placeholder="First Name" required
-              className="border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors"
-              value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
-            <input type="text" name="lastName" placeholder="Last Name" required
-              className="border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors"
-              value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
-          </div>
+          <input type="text" name="lastName" placeholder="Last Name" required
+            className="w-full border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors mb-3"
+            value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
           <input type="email" name="email" placeholder="Email Address" required
             className="w-full border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors mb-3"
             value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
@@ -140,36 +135,39 @@ export default function LandingPage() {
           {phoneError && <p className="text-red-400 text-xs mb-2">{phoneError}</p>}
           {!phoneError && <div className="mb-3" />}
 
+          <input type="text" name="address" placeholder="Address" required
+            className="w-full border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors mb-3"
+            value={formData.address} onChange={(e) => setFormData({ ...formData, address: e.target.value })} />
+
           <select
-            name="service"
+            name="electricBill"
             required
             className="w-full border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors mb-3 appearance-none"
-            value={formData.service}
-            onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+            value={formData.electricBill}
+            onChange={(e) => setFormData({ ...formData, electricBill: e.target.value })}
           >
-            <option value="" disabled className="text-gray-800">What are you interested in?</option>
-            <option value="solar" className="text-gray-800">Solar Panels</option>
-            <option value="battery" className="text-gray-800">Battery Backup</option>
-            <option value="solar_battery" className="text-gray-800">Solar + Battery</option>
+            <option value="" disabled className="text-gray-800">Average Monthly Electric Bill</option>
+            <option value="under_100" className="text-gray-800">Under $100</option>
+            <option value="100_250" className="text-gray-800">$100–$250</option>
+            <option value="250_500" className="text-gray-800">$250–$500</option>
+            <option value="500_plus" className="text-gray-800">$500+</option>
+            <option value="dont_know" className="text-gray-800">I don&apos;t know</option>
+            <option value="no_bill" className="text-gray-800">I don&apos;t receive a monthly electric bill</option>
           </select>
 
-          <div className="mb-4">
-            <p className="text-white text-sm font-medium mb-2">Solar + battery systems typically start around $15,000 (before 30% tax credit). Is this within your budget?</p>
-            <div className="flex gap-3">
-              <label className="flex-1 cursor-pointer">
-                <input type="radio" name="budget" value="yes" required className="sr-only peer" onChange={() => setFormData({ ...formData, budget: "yes" })} />
-                <div className="peer-checked:bg-accent peer-checked:border-accent peer-checked:text-white border-2 border-white/20 text-gray-300 rounded-lg py-2.5 text-center font-display font-semibold uppercase tracking-wider transition-all">
-                  Yes
-                </div>
-              </label>
-              <label className="flex-1 cursor-pointer">
-                <input type="radio" name="budget" value="no" className="sr-only peer" onChange={() => setFormData({ ...formData, budget: "no" })} />
-                <div className="peer-checked:bg-accent peer-checked:border-accent peer-checked:text-white border-2 border-white/20 text-gray-300 rounded-lg py-2.5 text-center font-display font-semibold uppercase tracking-wider transition-all">
-                  No
-                </div>
-              </label>
-            </div>
-          </div>
+          <select
+            name="creditScore"
+            required
+            className="w-full border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors mb-4 appearance-none"
+            value={formData.creditScore}
+            onChange={(e) => setFormData({ ...formData, creditScore: e.target.value })}
+          >
+            <option value="" disabled className="text-gray-800">Credit Score</option>
+            <option value="under_600" className="text-gray-800">Under 600</option>
+            <option value="600_700" className="text-gray-800">600–700</option>
+            <option value="700_plus" className="text-gray-800">700+</option>
+            <option value="dont_know" className="text-gray-800">I don&apos;t know</option>
+          </select>
 
           <button type="submit" className="w-full bg-accent text-white font-display font-bold py-4 rounded-lg text-lg uppercase tracking-wider hover:bg-accent/90 transition-all">
             Schedule My Free Assessment
