@@ -6,8 +6,8 @@ import { useTracking } from "@/hooks/useTracking";
 import { QueryParamPersistence } from "@/components/QueryParamPersistence";
 import { Reveal } from "@/components/Reveal";
 
-const PHONE = "(406) 250-2361";
-const PHONE_HREF = "tel:4062502361";
+const PHONE = "(406) 250-2360";
+const PHONE_HREF = "tel:4062502360";
 
 /* ── Animated counter ── */
 function AnimatedCounter({ target, suffix = "", prefix = "" }: { target: number; suffix?: string; prefix?: string }) {
@@ -51,11 +51,11 @@ function isValidPhone(value: string): boolean {
 /* ── CTA blocks ── */
 function DualCTA({ primary, href = "#hero-form" }: { primary: string; href?: string }) {
   return (
-    <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-      <a href={href} className="bg-primary text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-primary/90 transition-all">
+    <div className="mt-10 flex flex-row flex-wrap items-center justify-center gap-3">
+      <a href={href} className="inline-flex items-center justify-center bg-primary text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-primary/90 transition-all">
         {primary}
       </a>
-      <a href={PHONE_HREF} className="border-2 border-primary rounded-lg px-6 py-3 font-display font-semibold text-primary uppercase tracking-wider hover:bg-primary hover:text-white transition-all">
+      <a href={PHONE_HREF} className="inline-flex items-center justify-center border-2 border-primary rounded-lg px-6 py-3 font-display font-semibold text-primary uppercase tracking-wider hover:bg-primary hover:text-white transition-all">
         Call {PHONE}
       </a>
     </div>
@@ -228,11 +228,11 @@ export default function LandingPage() {
               </p>
             </Reveal>
             <Reveal delay={300}>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#hero-form" className="bg-accent text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-accent/90 transition-all text-center rounded-lg">
+              <div className="flex flex-row flex-wrap items-center gap-4">
+                <a href="#hero-form" className="inline-flex items-center justify-center bg-accent text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-accent/90 transition-all text-center rounded-lg">
                   Book Free Assessment
                 </a>
-                <a href={PHONE_HREF} className="border-2 border-white text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-white hover:text-primary transition-all text-center rounded-lg">
+                <a href={PHONE_HREF} className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-white hover:text-primary transition-all text-center rounded-lg">
                   Call {PHONE}
                 </a>
               </div>
@@ -355,11 +355,11 @@ export default function LandingPage() {
             ))}
           </div>
 
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-            <a href="#contact" className="bg-accent text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-accent/90 transition-all rounded-lg">
+          <div className="mt-12 flex flex-row flex-wrap items-center justify-center gap-3">
+            <a href="#contact" className="inline-flex items-center justify-center bg-accent text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-accent/90 transition-all rounded-lg">
               Start My Solar Journey
             </a>
-            <a href={PHONE_HREF} className="border-2 border-white rounded-lg px-6 py-3 font-display font-semibold text-white uppercase tracking-wider hover:bg-white hover:text-primary transition-all">
+            <a href={PHONE_HREF} className="inline-flex items-center justify-center border-2 border-white rounded-lg px-6 py-3 font-display font-semibold text-white uppercase tracking-wider hover:bg-white hover:text-primary transition-all">
               Call {PHONE}
             </a>
           </div>
