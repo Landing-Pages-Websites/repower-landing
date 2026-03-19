@@ -62,28 +62,14 @@ function DualCTA({ primary, href = "#hero-form" }: { primary: string; href?: str
   );
 }
 
-export default function LandingPage() {
-  useTracking({ siteKey: "sk_mmv1597s_i3ve8nl7cv", gtmId: "GTM-N6DBKMH9" });
+/* ── Lead Form (standalone component with own state) ── */
+function LeadForm({ id = "hero-form" }: { id?: string }) {
   const { submit: submitLead } = useMegaLeadForm();
-
   const [formData, setFormData] = useState({
     firstName: "", lastName: "", email: "", phone: "", address: "", electricBill: "", creditScore: ""
   });
   const [submitted, setSubmitted] = useState(false);
-  const [showFloating, setShowFloating] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [phoneError, setPhoneError] = useState("");
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowFloating(window.scrollY > 800);
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,7 +94,7 @@ export default function LandingPage() {
     }
   };
 
-  const LeadForm = ({ id = "hero-form" }: { id?: string }) => (
+  return (
     <form id={id} onSubmit={handleSubmit} className="bg-primary/90 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/10">
       <h3 className="font-display text-3xl font-bold mb-2 text-white uppercase tracking-wide">Book Your Free Assessment</h3>
       <p className="text-gray-300 mb-6 text-sm">Find out how much you could save with solar + battery.</p>
@@ -182,6 +168,24 @@ export default function LandingPage() {
       )}
     </form>
   );
+}
+
+export default function LandingPage() {
+  useTracking({ siteKey: "sk_mmv1597s_i3ve8nl7cv", gtmId: "GTM-N6DBKMH9" });
+
+  const [showFloating, setShowFloating] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowFloating(window.scrollY > 800);
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
