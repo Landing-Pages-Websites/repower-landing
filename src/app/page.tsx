@@ -67,7 +67,7 @@ export default function LandingPage() {
   const { submit: submitLead } = useMegaLeadForm();
 
   const [formData, setFormData] = useState({
-    lastName: "", email: "", phone: "", address: "", electricBill: "", creditScore: ""
+    firstName: "", lastName: "", email: "", phone: "", address: "", electricBill: "", creditScore: ""
   });
   const [submitted, setSubmitted] = useState(false);
   const [showFloating, setShowFloating] = useState(false);
@@ -94,6 +94,7 @@ export default function LandingPage() {
     setPhoneError("");
     try {
       await submitLead({
+        firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
         phone: formData.phone,
@@ -122,9 +123,14 @@ export default function LandingPage() {
         </div>
       ) : (
         <>
-          <input type="text" name="lastName" placeholder="Last Name" required
-            className="w-full border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors mb-3"
-            value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <input type="text" name="firstName" placeholder="First Name" required
+              className="border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors"
+              value={formData.firstName} onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
+            <input type="text" name="lastName" placeholder="Last Name" required
+              className="border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors"
+              value={formData.lastName} onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
+          </div>
           <input type="email" name="email" placeholder="Email Address" required
             className="w-full border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors mb-3"
             value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
