@@ -69,15 +69,18 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
     firstName: "", lastName: "", email: "", phone: "", address: "", electricBill: "", creditScore: ""
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [phoneError, setPhoneError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting || submitted) return;
     if (!isValidPhone(formData.phone)) {
       setPhoneError("Please enter a valid 10-digit phone number");
       return;
     }
     setPhoneError("");
+    setSubmitting(true);
     try {
       await submitLead({
         firstName: formData.firstName,
@@ -89,8 +92,11 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
         creditScore: formData.creditScore,
       });
       setSubmitted(true);
-    } catch {
-      /* silently handle */
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setSubmitted(true);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -171,8 +177,9 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
             </div>
           </div>
 
-          <button type="submit" className="w-full bg-accent text-white font-display font-bold py-4 rounded-lg text-lg uppercase tracking-wider hover:bg-accent/90 transition-all">
-            Schedule My Free Assessment
+          <button type="submit" disabled={submitting || submitted}
+            className="w-full bg-accent text-white font-display font-bold py-4 rounded-lg text-lg uppercase tracking-wider hover:bg-accent/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed">
+            {submitting ? "Submitting..." : "Schedule My Free Assessment"}
           </button>
         </>
       )}
