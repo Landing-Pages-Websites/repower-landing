@@ -66,7 +66,7 @@ function DualCTA({ primary, href = "#hero-form" }: { primary: string; href?: str
 function LeadForm({ id = "hero-form" }: { id?: string }) {
   const { submit: submitLead } = useMegaLeadForm();
   const [formData, setFormData] = useState({
-    firstName: "", lastName: "", email: "", phone: "", address: "", electricBill: "", creditScore: ""
+    firstName: "", lastName: "", email: "", phone: "", address: "", city: "", state: "", electricBill: "", creditScore: ""
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -88,6 +88,8 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
         email: formData.email,
         phone: formData.phone,
         address: formData.address,
+        city: formData.city,
+        state: formData.state,
         electricBill: formData.electricBill,
         creditScore: formData.creditScore,
       });
@@ -136,6 +138,15 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
           <input type="text" name="address" placeholder="Address" required
             className="w-full border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors mb-3"
             value={formData.address} onChange={(e) => setFormData({ ...formData, address: e.target.value })} />
+
+          <div className="grid grid-cols-2 gap-3 mb-3">
+            <input type="text" name="city" placeholder="City" required
+              className="border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors"
+              value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} />
+            <input type="text" name="state" placeholder="State" required
+              className="border-2 border-white/20 bg-white/10 text-white placeholder-gray-400 rounded-lg px-4 py-3.5 focus:border-accent outline-none transition-colors"
+              value={formData.state} onChange={(e) => setFormData({ ...formData, state: e.target.value })} />
+          </div>
 
           <div className="relative mb-3">
             <select
