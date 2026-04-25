@@ -2,8 +2,8 @@
 
 @theme {
   --color-primary: #000000;
-  --color-accent: #FFDF00;
-  --color-warm: #FFDF00;
+  --color-accent: #F5B82E;
+  --color-warm: #F5B82E;
   --color-dark: #000000;
   --color-dark-card: #141414;
   --color-dark-border: #262626;
@@ -11,7 +11,7 @@
   --color-light-card: #ffffff;
   --color-text-dark: #000000;
   --color-text-muted: #6b7280;
-  --color-cta: #FFDF00;
+  --color-cta: #F5B82E;
 }
 
 html {
