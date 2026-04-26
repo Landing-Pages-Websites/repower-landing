@@ -32,7 +32,7 @@ function AnimatedCounter({ target, suffix = "", prefix = "" }: { target: number;
     return () => observer.disconnect();
   }, [target]);
 
-  return <div ref={ref} className="font-display text-5xl md:text-6xl font-bold text-accent">{prefix}{count.toLocaleString()}{suffix}</div>;
+  return <div ref={ref} className="font-display text-5xl md:text-6xl font-bold text-primary">{prefix}{count.toLocaleString()}{suffix}</div>;
 }
 
 /* ── Phone formatting ── */
@@ -110,7 +110,7 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
       {submitted ? (
         <div className="text-center py-8">
           <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
           </div>
           <h4 className="font-display text-2xl font-bold text-white mb-2 uppercase">You&apos;re All Set</h4>
           <p className="text-gray-300">We&apos;ll be in touch within 24 hours to schedule your free solar assessment.</p>
@@ -189,7 +189,7 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
           </div>
 
           <button type="submit" disabled={submitting || submitted}
-            className="w-full bg-accent text-white font-display font-bold py-4 rounded-lg text-lg uppercase tracking-wider hover:bg-accent/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed">
+            className="w-full bg-accent text-primary font-display font-bold py-4 rounded-lg text-lg uppercase tracking-wider hover:bg-accent/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed">
             {submitting ? "Submitting..." : "Schedule My Free Assessment"}
           </button>
         </>
@@ -265,7 +265,7 @@ export default function LandingPage() {
             </Reveal>
             <Reveal delay={300}>
               <div className="flex flex-row flex-wrap items-center gap-4">
-                <a href="#hero-form" className="inline-flex items-center justify-center bg-accent text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-accent/90 transition-all text-center rounded-lg">
+                <a href="#hero-form" className="inline-flex items-center justify-center bg-accent text-primary px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-accent/90 transition-all text-center rounded-lg">
                   Book Free Assessment
                 </a>
                 <a href={PHONE_HREF} className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-white hover:text-primary transition-all text-center rounded-lg">
@@ -323,7 +323,7 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal>
               <div>
-                <div className="text-accent uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4">Why Go Solar?</div>
+                <div className="inline-block bg-accent text-primary uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4 px-3 py-1 rounded">Why Go Solar?</div>
                 <h2 className="font-display text-4xl md:text-5xl font-bold text-primary uppercase mb-6 leading-tight">Take Control of Your Energy Future</h2>
                 <p className="text-text-muted text-lg mb-8 leading-relaxed">
                   Montana homeowners are switching to solar + battery for energy independence, lower bills, and protection from outages. Here&apos;s what you gain:
@@ -339,7 +339,7 @@ export default function LandingPage() {
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <div className="w-6 h-6 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                        <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                       </div>
                       <span className="text-text-dark text-lg" dangerouslySetInnerHTML={{ __html: item }} />
                     </div>
@@ -392,7 +392,7 @@ export default function LandingPage() {
           </div>
 
           <div className="mt-12 flex flex-row flex-wrap items-center justify-center gap-3">
-            <a href="#contact" className="inline-flex items-center justify-center bg-accent text-white px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-accent/90 transition-all rounded-lg">
+            <a href="#contact" className="inline-flex items-center justify-center bg-accent text-primary px-8 py-4 font-display font-bold text-lg uppercase tracking-wider hover:bg-accent/90 transition-all rounded-lg">
               Start My Solar Journey
             </a>
             <a href={PHONE_HREF} className="inline-flex items-center justify-center border-2 border-white rounded-lg px-6 py-3 font-display font-semibold text-white uppercase tracking-wider hover:bg-white hover:text-primary transition-all">
@@ -407,7 +407,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4">
           <Reveal>
             <div className="text-center mb-16">
-              <div className="text-accent uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4">Our Solutions</div>
+              <div className="inline-block bg-accent text-primary uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4 px-3 py-1 rounded">Our Solutions</div>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-primary uppercase">Solar + Battery, Better Together</h2>
             </div>
           </Reveal>
@@ -421,7 +421,7 @@ export default function LandingPage() {
                   <ul className="space-y-3 text-text-muted">
                     {["Custom-designed for your roof and energy needs", "Premium panels with 25+ year warranty", "Works year-round, even in Montana winters", "Net metering: sell excess power back to the grid"].map((item, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                        <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -437,7 +437,7 @@ export default function LandingPage() {
                   <ul className="space-y-3 text-text-muted">
                     {["Keep your lights on when the grid goes down", "Store excess solar energy for nighttime use", "Critical protection during Montana winter storms", "Smart energy management from your phone"].map((item, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <svg className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                        <svg className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -456,7 +456,7 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal>
               <div>
-                <div className="text-accent uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4">The Numbers</div>
+                <div className="inline-block bg-accent text-primary uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4 px-3 py-1 rounded">The Numbers</div>
                 <h2 className="font-display text-4xl md:text-5xl font-bold text-primary uppercase mb-6 leading-tight">Your Savings Potential</h2>
                 <div className="space-y-8">
                   <div className="border-l-4 border-accent pl-6">
@@ -493,7 +493,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-4">
           <Reveal>
             <div className="text-center mb-16">
-              <div className="text-accent uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4">What Homeowners Say</div>
+              <div className="inline-block bg-accent text-primary uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4 px-3 py-1 rounded">What Homeowners Say</div>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-primary uppercase">Montana Families Love repower</h2>
             </div>
           </Reveal>
@@ -529,7 +529,7 @@ export default function LandingPage() {
         <div className="max-w-4xl mx-auto px-4">
           <Reveal>
             <div className="text-center mb-16">
-              <div className="text-accent uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4">Questions?</div>
+              <div className="inline-block bg-accent text-primary uppercase tracking-[0.2em] text-sm font-display font-semibold mb-4 px-3 py-1 rounded">Questions?</div>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-primary uppercase">Common Questions About Solar</h2>
             </div>
           </Reveal>
@@ -547,7 +547,7 @@ export default function LandingPage() {
                 <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
                   <button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="w-full flex items-center justify-between p-6 text-left">
                     <h3 className="font-display text-lg font-bold text-primary uppercase pr-4">{faq.q}</h3>
-                    <svg className={`w-6 h-6 text-accent flex-shrink-0 transition-transform duration-300 ${openFaq === index ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                    <svg className={`w-6 h-6 text-primary flex-shrink-0 transition-transform duration-300 ${openFaq === index ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
                   </button>
                   <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
                     <p className="text-text-muted leading-relaxed px-6 pb-6">{faq.a}</p>
@@ -598,7 +598,7 @@ export default function LandingPage() {
 
       {/* ═══ Floating Sticky CTA ═══ */}
       <div className={`fixed bottom-0 left-0 right-0 md:bottom-6 md:right-6 md:left-auto z-40 transition-all duration-500 ${showFloating ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 pointer-events-none"}`}>
-        <a href="#contact" className="bg-accent text-white md:rounded-2xl shadow-2xl p-4 flex items-center justify-center gap-2 font-display font-bold uppercase tracking-wider text-sm hover:bg-accent/90 transition-all">
+        <a href="#contact" className="bg-accent text-primary md:rounded-2xl shadow-2xl p-4 flex items-center justify-center gap-2 font-display font-bold uppercase tracking-wider text-sm hover:bg-accent/90 transition-all">
           Book Now
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
         </a>
