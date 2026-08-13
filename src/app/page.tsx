@@ -6,6 +6,12 @@ import { useTracking } from "@/hooks/useTracking";
 import { QueryParamPersistence } from "@/components/QueryParamPersistence";
 import { Reveal } from "@/components/Reveal";
 
+declare global {
+  interface Window {
+    MegaTag?: { trackEvent?: (event: string, data?: Record<string, unknown>) => void };
+  }
+}
+
 const PHONE = "(406) 416-4143";
 const PHONE_HREF = "tel:4064164143";
 
@@ -63,6 +69,8 @@ function DualCTA({ primary, href = "#hero-form" }: { primary: string; href?: str
 }
 
 /* ── Lead Form (standalone component with own state) ── */
+const SUBMIT_ERROR_MESSAGE = `Something went wrong and your request was not sent. Please try again, or call us at ${PHONE}.`;
+
 function LeadForm({ id = "hero-form" }: { id?: string }) {
   const { submit: submitLead } = useMegaLeadForm();
   const [formData, setFormData] = useState({
@@ -71,18 +79,31 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [phoneError, setPhoneError] = useState("");
+  const [submitError, setSubmitError] = useState("");
+  const inFlightRef = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (submitting || submitted) return;
+  const handleClick = () => {
+    const form = formRef.current;
+    if (form && !form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    void runSubmit();
+  };
+
+  const runSubmit = async () => {
     if (!isValidPhone(formData.phone)) {
       setPhoneError("Please enter a valid 10-digit phone number");
       return;
     }
+    if (inFlightRef.current) return;
+    inFlightRef.current = true;
     setPhoneError("");
+    setSubmitError("");
     setSubmitting(true);
     try {
-      await submitLead({
+      const res = await submitLead({
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
@@ -93,17 +114,28 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
         electricBill: formData.electricBill,
         creditScore: formData.creditScore,
       });
+      if (res?.ok !== true) throw new Error("Submission was not confirmed");
+      try {
+        window.MegaTag?.trackEvent?.("form_submit", {
+          form_id: id,
+          form_route: "solar-battery",
+          lead_id: res?.id,
+        });
+      } catch {
+        // Tracking must never break a confirmed submission.
+      }
       setSubmitted(true);
     } catch (err) {
       console.error("Form submission error:", err);
-      setSubmitted(true);
+      setSubmitError(SUBMIT_ERROR_MESSAGE);
     } finally {
+      inFlightRef.current = false;
       setSubmitting(false);
     }
   };
 
   return (
-    <form id={id} onSubmit={handleSubmit} className="bg-primary/90 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/10">
+    <form id={id} ref={formRef} onSubmit={(e) => e.preventDefault()} className="bg-primary/90 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/10">
       <h3 className="font-display text-3xl font-bold mb-2 text-white uppercase tracking-wide">Book Your Free Assessment</h3>
       <p className="text-gray-300 mb-6 text-sm">Find out how much you could save with solar + battery.</p>
 
@@ -188,7 +220,13 @@ function LeadForm({ id = "hero-form" }: { id?: string }) {
             </div>
           </div>
 
-          <button type="submit" disabled={submitting || submitted}
+          {submitError && (
+            <p role="alert" aria-live="polite" className="text-red-300 text-sm mb-3 rounded-lg border border-red-400/40 bg-red-400/10 px-3.5 py-2.5">
+              {submitError}
+            </p>
+          )}
+
+          <button type="button" onClick={handleClick} disabled={submitting || submitted}
             className="w-full bg-accent text-white font-display font-bold py-4 rounded-lg text-lg uppercase tracking-wider hover:bg-accent/90 transition-all disabled:opacity-60 disabled:cursor-not-allowed">
             {submitting ? "Submitting..." : "Schedule My Free Assessment"}
           </button>

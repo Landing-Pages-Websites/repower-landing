@@ -226,7 +226,16 @@ export const useMegaLeadForm = (): UseMegaLeadFormReturn => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      return response.json();
+      let parsed: SubmissionResponse;
+      try {
+        parsed = (await response.json()) as SubmissionResponse;
+      } catch {
+        throw new Error("Submission response was not valid JSON");
+      }
+      if (parsed?.ok !== true) {
+        throw new Error("Submission was not confirmed");
+      }
+      return parsed;
     },
     []
   );
